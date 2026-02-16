@@ -10,10 +10,27 @@ Simulacion::Simulacion() {
 Simulacion::~Simulacion() {
     std::cout << "Desstructor ~Simulacion() ejecutado.\n";
 }
+// Mostradores (show)
+/*
+ */
+std::string Simulacion::mostrarStrFechaInicioSimulacion() {
+    return this->strFechaInicioSimulacion + "\n";
+}
+/*
+ */
+std::string Simulacion::mostrarStrFechaSimulacion() {
+    return this->strFechaSimulacion + "\n";
+}
+/*
+ */
+std::string Simulacion::mostrarStrFechaFinSimulacion() {
+    return this->strFechaFinSimulacion + "\n";
+}
+// Funciones privadas de la clase Simulacion
 // Obtenedores (get)
 /*
  */
-void Simulacion::obtenerStrFechaInicioSimulacion() {
+std::string Simulacion::obtenerStrFechaInicioSimulacion() {
     std::string strEntradaUsuario = "";
     std::cout << "Ingresar fecha de inicio de la simulación \n"
         << "utilizando el siguiente formato: \"YYYY-MM-DD HH:MM\"\n"
@@ -24,12 +41,12 @@ void Simulacion::obtenerStrFechaInicioSimulacion() {
 }
 /*
  */
-void Simulacion::obtenerStrFechaSimulacion() {
+std::string Simulacion::obtenerStrFechaSimulacion() {
 
 }
 /*
  */
-void Simulacion::obtenerStrFechaFinSimulacion() {
+std::string Simulacion::obtenerStrFechaFinSimulacion() {
     std::string strEntradaUsuario = "";
     std::cout << "Ingresar fecha de finalización de la simulación \n"
         << "utilizando el siguiente formato: \"YYYY-MM-DD HH:MM\"\n"
@@ -41,7 +58,7 @@ void Simulacion::obtenerStrFechaFinSimulacion() {
 // Ajustadores (set)
 /*
  */
-void Simulacion::ajustarStrTmFechaInicioSimulacion() {
+std::string Simulacion::ajustarStrFechaInicioSimulacion() {
     try {
         std::istringstream streamFechaTransferencia(this->strFechaTransferenciaSimulacion);
         streamFechaTransferencia >> std::get_time(&this->tmFechaTransferenciaSimulacion, "%Y-%m-%d %H:%M:%S");
@@ -65,12 +82,12 @@ void Simulacion::ajustarStrTmFechaInicioSimulacion() {
 }
 /*
  */
-void Simulacion::ajustarStrTmFechaSimulacion() {
+std::string Simulacion::ajustarStrFechaSimulacion() {
 
 }
 /*
  */
-void Simulacion::ajustarStrTmFechaFinSimulacion() {
+std::string Simulacion::ajustarStrFechaFinSimulacion() {
     std::time_t tiempoFinal = {};
     std::time_t tiempoInicial = {};
     double diferenciaTiempoFinalInicial = 0.0;
@@ -107,19 +124,4 @@ void Simulacion::ajustarStrTmFechaFinSimulacion() {
         std::exit(EXIT_FAILURE);
     }
 }
-// Mostradores (show)
-/*
- */
-std::string Simulacion::mostrarStrFechaInicioSimulacion() {
-    return this->strFechaInicioSimulacion;
-}
-/*
- */
-std::string Simulacion::mostrarStrFechaSimulacion() {
-    return this->strFechaSimulacion;
-}
-/*
- */
-std::string Simulacion::mostrarStrFechaFinSimulacion() {
-    return this->strFechaFinSimulacion;
-}
+
