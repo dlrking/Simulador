@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/sim0.dir/main.cpp.o -c /home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp",
+  "file": "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp",
+  "output": "CMakeFiles/sim0.dir/main.cpp.o"
+},
+{
+  "directory": "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/sim0.dir/simulador.cpp.o -c /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp",
+  "file": "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp",
+  "output": "CMakeFiles/sim0.dir/simulador.cpp.o"
+},
+{
+  "directory": "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/sim0.dir/simulacion.cpp.o -c /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp",
+  "file": "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp",
+  "output": "CMakeFiles/sim0.dir/simulacion.cpp.o"
+}
+]

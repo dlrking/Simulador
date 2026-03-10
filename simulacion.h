@@ -35,7 +35,7 @@ private:
     void comprobarValidezFecha();
     void ajustarFecha(std::string);
     void comprobarIntervaloFecha();
-    std::vector<std::tm> inicializarVectorTiempo();
+    void inicializarVectorTiempo();
 
 public:
     // Atributos

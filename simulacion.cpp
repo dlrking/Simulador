@@ -137,22 +137,21 @@ void Simulacion::comprobarIntervaloFecha() {
 
 /*
  */
-std::vector<std::tm> Simulacion::inicializarVectorTiempo() {
+void Simulacion::inicializarVectorTiempo() {
     std::cout << "Creando e inicializando vector de estructuras de tiempo (tm)... \n";
-    std::vector<std::tm> resultado;
     this->tmFechaTransferencia = this->tmFechaInicial;
+    this->vectorTiempo.push_back(this->tmFechaTransferencia);
     for (int i = 0; i < this->tiempoSimulacionMinutos; i++) {
         this->tmFechaTransferencia.tm_min += 1;
         std::mktime(&this->tmFechaTransferencia);
-        resultado.push_back(this->tmFechaTransferencia);
+        this->vectorTiempo.push_back(this->tmFechaTransferencia);
     }
-    for (int i = 0; i < resultado.size(); i++) {
+    for (int i = 0; i < this->vectorTiempo.size(); i++) {
         char buffer[80];
-        std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &resultado[i]);
+        std::strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", &this->vectorTiempo[i]);
         std::cout << buffer << std::endl;
     }
     std::cout << "Vector creado e inicializado correctamente. \n";
-    return resultado;
 }
 
 // Funciones públicas de clase
@@ -194,7 +193,7 @@ Simulacion::Simulacion() {
     comprobarIntervaloFecha();
     std::cout << "Inicio de la simulación: " << this->mostrarStrFechaInicioSimulacion();
     std::cout << "Final de la simulación: " << this->mostrarStrFechaFinSimulacion();
-    this->vectorTiempo = inicializarVectorTiempo();
+    inicializarVectorTiempo();
 }
 
 /*
