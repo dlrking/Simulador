@@ -3,6 +3,7 @@ sim0: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../x86_64-linux-gnu/crti.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/sim0.dir/main.cpp.o \
+  CMakeFiles/sim0.dir/escribano.cpp.o \
   CMakeFiles/sim0.dir/simulador.cpp.o \
   CMakeFiles/sim0.dir/simulacion.cpp.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
@@ -41,6 +42,8 @@ sim0: \
 /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
 
 CMakeFiles/sim0.dir/main.cpp.o:
+
+CMakeFiles/sim0.dir/escribano.cpp.o:
 
 CMakeFiles/sim0.dir/simulador.cpp.o:
 

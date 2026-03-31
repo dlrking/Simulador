@@ -1,7 +1,7 @@
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/sim0.dir
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/edit_cache.dir
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/rebuild_cache.dir
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/list_install_components.dir
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/install.dir
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/install/local.dir
-/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/install/strip.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/sim0.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/edit_cache.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/rebuild_cache.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/list_install_components.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/install.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/install/local.dir
+/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/install/strip.dir

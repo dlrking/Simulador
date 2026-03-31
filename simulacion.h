@@ -1,29 +1,24 @@
 #ifndef _SIMULACION
 #define _SIMULACION
 
-#include "simulador.h"
-#include "objetos.h"
+#include "encabezados.h"
 
 class Simulacion {
-friend class Simulador;
-private:
-    // Atributos
-    std::string strFechaInicial;
-    std::string strFechaActual;
-    std::string strFechaFinal;
-    std::string strFechaSistema;
+public:
+
+    std::string strFecha;
 
     std::tm tmFechaInicial;
     std::tm tmFechaActual;
     std::tm tmFechaFinal;
     std::tm tmFechaSistema;
 
-    std::time_t tiempoFechaInicial;
-    std::time_t tiempoFechaActual;
-    std::time_t tiempoFechaFinal;
-    std::time_t tiempoFechaSistema;
+    std::time_t tiempoInicial;
+    std::time_t tiempoActual;
+    std::time_t tiempoFinal;
+    std::time_t tiempoSistema;
 
-    int tiempoSimulacionSegundos;
+    long tiempoSimulacionSegundos;
     int tiempoSimulacionMinutos;
 
     std::vector<std::tm> vectorTiempo;
@@ -37,7 +32,6 @@ private:
     void comprobarIntervaloFecha();
     void inicializarVectorTiempo();
 
-public:
     // Atributos
     std::string strFechaTransferencia;
     std::tm tmFechaTransferencia;
@@ -52,9 +46,9 @@ public:
     std::time_t mostrarTiempoFechaSimulacion();
     std::time_t mostrarTiempoFechaFinSimulacion();
 
-    /* Constructor de clase.
-     * Usualmente público o protegido.
-     * Puede ser privado en ciertos patrones de diseño (singleton).
+    /*
+     *
+     *
     */
     Simulacion();
     /* Destructor de clase.

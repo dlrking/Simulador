@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/sim0.dir/link.d"
+  "CMakeFiles/sim0.dir/escribano.cpp.o"
+  "CMakeFiles/sim0.dir/escribano.cpp.o.d"
   "CMakeFiles/sim0.dir/main.cpp.o"
   "CMakeFiles/sim0.dir/main.cpp.o.d"
   "CMakeFiles/sim0.dir/simulacion.cpp.o"

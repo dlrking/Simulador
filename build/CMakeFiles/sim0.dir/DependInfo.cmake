@@ -8,9 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp" "CMakeFiles/sim0.dir/main.cpp.o" "gcc" "CMakeFiles/sim0.dir/main.cpp.o.d"
-  "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp" "CMakeFiles/sim0.dir/simulacion.cpp.o" "gcc" "CMakeFiles/sim0.dir/simulacion.cpp.o.d"
-  "/home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp" "CMakeFiles/sim0.dir/simulador.cpp.o" "gcc" "CMakeFiles/sim0.dir/simulador.cpp.o.d"
+  "/home/hathor/Documentos/Source/CPP/Simulador/escribano.cpp" "CMakeFiles/sim0.dir/escribano.cpp.o" "gcc" "CMakeFiles/sim0.dir/escribano.cpp.o.d"
+  "/home/hathor/Documentos/Source/CPP/Simulador/main.cpp" "CMakeFiles/sim0.dir/main.cpp.o" "gcc" "CMakeFiles/sim0.dir/main.cpp.o.d"
+  "/home/hathor/Documentos/Source/CPP/Simulador/simulacion.cpp" "CMakeFiles/sim0.dir/simulacion.cpp.o" "gcc" "CMakeFiles/sim0.dir/simulacion.cpp.o.d"
+  "/home/hathor/Documentos/Source/CPP/Simulador/simulador.cpp" "CMakeFiles/sim0.dir/simulador.cpp.o" "gcc" "CMakeFiles/sim0.dir/simulador.cpp.o.d"
   "" "sim0" "gcc" "CMakeFiles/sim0.dir/link.d"
   )
 

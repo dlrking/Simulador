@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hathor/Documentos/Source/CPP/Sim0/Sim0
+CMAKE_SOURCE_DIR = /home/hathor/Documentos/Source/CPP/Simulador
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build
+CMAKE_BINARY_DIR = /home/hathor/Documentos/Source/CPP/Simulador/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/sim0.dir/depend.make
@@ -73,50 +73,65 @@ CMakeFiles/sim0.dir/codegen:
 .PHONY : CMakeFiles/sim0.dir/codegen
 
 CMakeFiles/sim0.dir/main.cpp.o: CMakeFiles/sim0.dir/flags.make
-CMakeFiles/sim0.dir/main.cpp.o: /home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp
+CMakeFiles/sim0.dir/main.cpp.o: /home/hathor/Documentos/Source/CPP/Simulador/main.cpp
 CMakeFiles/sim0.dir/main.cpp.o: CMakeFiles/sim0.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sim0.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/main.cpp.o -MF CMakeFiles/sim0.dir/main.cpp.o.d -o CMakeFiles/sim0.dir/main.cpp.o -c /home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sim0.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/main.cpp.o -MF CMakeFiles/sim0.dir/main.cpp.o.d -o CMakeFiles/sim0.dir/main.cpp.o -c /home/hathor/Documentos/Source/CPP/Simulador/main.cpp
 
 CMakeFiles/sim0.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sim0.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp > CMakeFiles/sim0.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Simulador/main.cpp > CMakeFiles/sim0.dir/main.cpp.i
 
 CMakeFiles/sim0.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sim0.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Sim0/Sim0/main.cpp -o CMakeFiles/sim0.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Simulador/main.cpp -o CMakeFiles/sim0.dir/main.cpp.s
+
+CMakeFiles/sim0.dir/escribano.cpp.o: CMakeFiles/sim0.dir/flags.make
+CMakeFiles/sim0.dir/escribano.cpp.o: /home/hathor/Documentos/Source/CPP/Simulador/escribano.cpp
+CMakeFiles/sim0.dir/escribano.cpp.o: CMakeFiles/sim0.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sim0.dir/escribano.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/escribano.cpp.o -MF CMakeFiles/sim0.dir/escribano.cpp.o.d -o CMakeFiles/sim0.dir/escribano.cpp.o -c /home/hathor/Documentos/Source/CPP/Simulador/escribano.cpp
+
+CMakeFiles/sim0.dir/escribano.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sim0.dir/escribano.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Simulador/escribano.cpp > CMakeFiles/sim0.dir/escribano.cpp.i
+
+CMakeFiles/sim0.dir/escribano.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sim0.dir/escribano.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Simulador/escribano.cpp -o CMakeFiles/sim0.dir/escribano.cpp.s
 
 CMakeFiles/sim0.dir/simulador.cpp.o: CMakeFiles/sim0.dir/flags.make
-CMakeFiles/sim0.dir/simulador.cpp.o: /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp
+CMakeFiles/sim0.dir/simulador.cpp.o: /home/hathor/Documentos/Source/CPP/Simulador/simulador.cpp
 CMakeFiles/sim0.dir/simulador.cpp.o: CMakeFiles/sim0.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sim0.dir/simulador.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/simulador.cpp.o -MF CMakeFiles/sim0.dir/simulador.cpp.o.d -o CMakeFiles/sim0.dir/simulador.cpp.o -c /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sim0.dir/simulador.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/simulador.cpp.o -MF CMakeFiles/sim0.dir/simulador.cpp.o.d -o CMakeFiles/sim0.dir/simulador.cpp.o -c /home/hathor/Documentos/Source/CPP/Simulador/simulador.cpp
 
 CMakeFiles/sim0.dir/simulador.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sim0.dir/simulador.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp > CMakeFiles/sim0.dir/simulador.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Simulador/simulador.cpp > CMakeFiles/sim0.dir/simulador.cpp.i
 
 CMakeFiles/sim0.dir/simulador.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sim0.dir/simulador.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulador.cpp -o CMakeFiles/sim0.dir/simulador.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Simulador/simulador.cpp -o CMakeFiles/sim0.dir/simulador.cpp.s
 
 CMakeFiles/sim0.dir/simulacion.cpp.o: CMakeFiles/sim0.dir/flags.make
-CMakeFiles/sim0.dir/simulacion.cpp.o: /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp
+CMakeFiles/sim0.dir/simulacion.cpp.o: /home/hathor/Documentos/Source/CPP/Simulador/simulacion.cpp
 CMakeFiles/sim0.dir/simulacion.cpp.o: CMakeFiles/sim0.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sim0.dir/simulacion.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/simulacion.cpp.o -MF CMakeFiles/sim0.dir/simulacion.cpp.o.d -o CMakeFiles/sim0.dir/simulacion.cpp.o -c /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sim0.dir/simulacion.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim0.dir/simulacion.cpp.o -MF CMakeFiles/sim0.dir/simulacion.cpp.o.d -o CMakeFiles/sim0.dir/simulacion.cpp.o -c /home/hathor/Documentos/Source/CPP/Simulador/simulacion.cpp
 
 CMakeFiles/sim0.dir/simulacion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/sim0.dir/simulacion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp > CMakeFiles/sim0.dir/simulacion.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hathor/Documentos/Source/CPP/Simulador/simulacion.cpp > CMakeFiles/sim0.dir/simulacion.cpp.i
 
 CMakeFiles/sim0.dir/simulacion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/sim0.dir/simulacion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Sim0/Sim0/simulacion.cpp -o CMakeFiles/sim0.dir/simulacion.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hathor/Documentos/Source/CPP/Simulador/simulacion.cpp -o CMakeFiles/sim0.dir/simulacion.cpp.s
 
 # Object files for target sim0
 sim0_OBJECTS = \
 "CMakeFiles/sim0.dir/main.cpp.o" \
+"CMakeFiles/sim0.dir/escribano.cpp.o" \
 "CMakeFiles/sim0.dir/simulador.cpp.o" \
 "CMakeFiles/sim0.dir/simulacion.cpp.o"
 
@@ -124,12 +139,13 @@ sim0_OBJECTS = \
 sim0_EXTERNAL_OBJECTS =
 
 sim0: CMakeFiles/sim0.dir/main.cpp.o
+sim0: CMakeFiles/sim0.dir/escribano.cpp.o
 sim0: CMakeFiles/sim0.dir/simulador.cpp.o
 sim0: CMakeFiles/sim0.dir/simulacion.cpp.o
 sim0: CMakeFiles/sim0.dir/build.make
 sim0: CMakeFiles/sim0.dir/compiler_depend.ts
 sim0: CMakeFiles/sim0.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable sim0"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable sim0"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sim0.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -141,6 +157,6 @@ CMakeFiles/sim0.dir/clean:
 .PHONY : CMakeFiles/sim0.dir/clean
 
 CMakeFiles/sim0.dir/depend:
-	cd /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hathor/Documentos/Source/CPP/Sim0/Sim0 /home/hathor/Documentos/Source/CPP/Sim0/Sim0 /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles/sim0.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/hathor/Documentos/Source/CPP/Simulador/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hathor/Documentos/Source/CPP/Simulador /home/hathor/Documentos/Source/CPP/Simulador /home/hathor/Documentos/Source/CPP/Simulador/build /home/hathor/Documentos/Source/CPP/Simulador/build /home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles/sim0.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/sim0.dir/depend
 

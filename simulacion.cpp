@@ -86,9 +86,8 @@ void Simulacion::ajustarFecha (std::string argumentos) {
         if (argumentos == "Inicial") {
             try {
                 std::cout << "Ajustando fecha inicial de la simulación... \n";
-                this->strFechaInicial = this->strFechaTransferencia;
                 this->tmFechaInicial = this->tmFechaTransferencia;
-                this->tiempoFechaInicial = this->tiempoFechaTransferencia;
+                this->tiempoInicial = this->tiempoFechaTransferencia;
                 std::cout << "Fecha de inicio ajustada correctamente. \n";
                 inicializarFechaTransferencia();
             } catch (const std::bad_cast& error) {
@@ -98,9 +97,8 @@ void Simulacion::ajustarFecha (std::string argumentos) {
         } else if (argumentos == "Final") {
             try {
                 std::cout << "Ajustando fecha final de la simulación... \n";
-                this->strFechaFinal = this->strFechaTransferencia;
                 this->tmFechaFinal = this->tmFechaTransferencia;
-                this->tiempoFechaFinal = this->tiempoFechaTransferencia;
+                this->tiempoFinal = this->tiempoFechaTransferencia;
                 std::cout << "Fecha de finalización ajustada correctamente. \n";
                 inicializarFechaTransferencia();
             } catch (const std::bad_cast& error) {
@@ -120,7 +118,7 @@ void Simulacion::ajustarFecha (std::string argumentos) {
  */
 void Simulacion::comprobarIntervaloFecha() {
     try {
-        this->tiempoSimulacionSegundos = std::difftime(this->tiempoFechaFinal, this->tiempoFechaInicial);
+        this->tiempoSimulacionSegundos = std::difftime(this->tiempoFinal, this->tiempoInicial);
         this->tiempoSimulacionMinutos = this->tiempoSimulacionSegundos / 60;
         if (this->tiempoSimulacionSegundos > 0) {
             std::cout << "Las fechas final e incial forman un intervalo de tiempo válido (mayor a 0). \n";
@@ -159,17 +157,17 @@ void Simulacion::inicializarVectorTiempo() {
 /*
  */
 std::string Simulacion::mostrarStrFechaInicioSimulacion() {
-    return this->strFechaInicial + "\n";
+    return "\n";
 }
 /*
  */
 std::string Simulacion::mostrarStrFechaSimulacion() {
-    return this->strFechaActual + "\n";
+    return "\n";
 }
 /*
  */
 std::string Simulacion::mostrarStrFechaFinSimulacion() {
-    return this->strFechaFinal + "\n";
+    return "\n";
 }
 
 /*

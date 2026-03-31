@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hathor/Documentos/Source/CPP/Sim0/Sim0
+CMAKE_SOURCE_DIR = /home/hathor/Documentos/Source/CPP/Simulador
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build
+CMAKE_BINARY_DIR = /home/hathor/Documentos/Source/CPP/Simulador/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +132,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles /home/hathor/Documentos/Source/CPP/Simulador/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hathor/Documentos/Source/CPP/Sim0/Sim0/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hathor/Documentos/Source/CPP/Simulador/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -173,6 +173,30 @@ sim0: cmake_check_build_system
 sim0/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim0.dir/build.make CMakeFiles/sim0.dir/build
 .PHONY : sim0/fast
+
+escribano.o: escribano.cpp.o
+.PHONY : escribano.o
+
+# target to build an object file
+escribano.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim0.dir/build.make CMakeFiles/sim0.dir/escribano.cpp.o
+.PHONY : escribano.cpp.o
+
+escribano.i: escribano.cpp.i
+.PHONY : escribano.i
+
+# target to preprocess a source file
+escribano.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim0.dir/build.make CMakeFiles/sim0.dir/escribano.cpp.i
+.PHONY : escribano.cpp.i
+
+escribano.s: escribano.cpp.s
+.PHONY : escribano.s
+
+# target to generate assembly for a file
+escribano.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim0.dir/build.make CMakeFiles/sim0.dir/escribano.cpp.s
+.PHONY : escribano.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -259,6 +283,9 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... sim0"
+	@echo "... escribano.o"
+	@echo "... escribano.i"
+	@echo "... escribano.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
