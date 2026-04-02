@@ -2,6 +2,7 @@
 #define SIMULADOR
 
 #include "simulacion.h"
+#include "relojAplicacion.h"
 
 class Simulador {
 public:
@@ -12,15 +13,9 @@ public:
 
     void ejecutar();
 
-    static std::chrono::system_clock::time_point obtenerTiempoSistema() { return tiempoSistema; }
-    static std::chrono::steady_clock::time_point obtenerTiempoCronometro() { return tiempoCronometro; }
-
 private:
     std::string textoFechaSimulacion;
     std::string textoFechaSistema;
-
-    static inline std::chrono::system_clock::time_point tiempoSistema;
-    static inline std::chrono::steady_clock::time_point tiempoCronometro;
 
     std::chrono::system_clock::time_point tiempoInicial;
     std::chrono::system_clock::time_point tiempoFinal;

@@ -2,7 +2,7 @@
 #define ESCRIBANO
 
 #include "encabezados.h"
-#include "simulador.h"
+#include "relojAplicacion.h"
 
 enum class nivelDeRegistro {
     DEPURACION,

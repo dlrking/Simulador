@@ -1,10 +1,8 @@
-#include "simulacion.h"
+#include "escribano.h"
+#include "simulador.h"
 
 int main() {
     setlocale(LC_ALL, "spanish"); // Localización (tildes, acentos, ñ, etcétera)
-
-    Simulacion* pSimulacion = new Simulacion();
-    delete pSimulacion;
-
+    RelojAplicacion::obtenerInstancia();
     return 0;
 }

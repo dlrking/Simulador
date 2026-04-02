@@ -6,24 +6,26 @@ Escribano& Escribano::obtenerInstancia() {
 }
 
 void Escribano::escribirBorrador(const std::string& origen, nivelDeRegistro nivel, const std::string& funcion, std::string mensaje) {
-    std::chrono::system_clock::time_point puntoTiempo = Simulador::obtenerTiempoSistema();
+    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoDelSistema();
     if (nivel < nivelMinimoDeRegistro) { return; }
-    if (borrador[origen].size() >= tamañoTamponDeRegistros) { transcribirBorrador(origen);}
+    std::vector<std::string>& registroActual = borrador[origen];
+    if (registroActual.size() >= tamañoTamponDeRegistros) { transcribirBorrador(origen);}
     std::stringstream suceso;
     suceso << obtenerTextoFecha() << ","
            << obtenerTextoNivelesDeRegistro(nivel) << ","
            << "[" << origen  << "],"
            << "[" << funcion << "],"
            << mensaje;
-    borrador[origen].push_back(suceso.str());
+    registroActual.push_back(suceso.str());
 }
 
 void Escribano::transcribirBorrador(const std::string& origen) {
     if (borrador[origen].empty()) { return; }
     std::ofstream& capitulo = obtenerBitacora(origen);
     if (capitulo.is_open()) {
-        for (const auto& iterador : borrador[origen]) {
-            capitulo << iterador << "\n";
+        const std::vector<std::string>& anotacion = borrador[origen];
+        for (size_t it = 0; it < anotacion.size(); ++it) {
+            capitulo << anotacion[it] << "\n";
         }
         capitulo.flush();
     }
@@ -31,7 +33,8 @@ void Escribano::transcribirBorrador(const std::string& origen) {
 }
 
 void Escribano::transcribirTodosLosBorradores() {
-    for (const auto& [origen, _] : borrador) { transcribirBorrador(origen); }
+    std::map<std::string, std::vector<std::string>>::iterator it;
+    for (it = borrador.begin(); it != borrador.end(); ++it) { transcribirBorrador(it->first); }
 }
 
 void Escribano::cerrarCapitulo(const std::string& origen) {
@@ -43,8 +46,10 @@ void Escribano::cerrarCapitulo(const std::string& origen) {
 
 void Escribano::cerrarBitacora() {
     transcribirTodosLosBorradores();
-    for (const auto& [origen, capitulo] : bitacora) { cerrarCapitulo(origen); }
+    std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it;
+    for (it = bitacora.begin(); it != bitacora.end(); ++it) { cerrarCapitulo(it->first); }
     bitacora.clear();
+    borrador.clear();
 }
 
 void Escribano::ajustarNivelMinimoDeRegistro(const std::string& nuevoNivel) {
@@ -66,7 +71,7 @@ std::string Escribano::obtenerNivelMinimoDeRegistro() {
 }
 
 std::string Escribano::obtenerNombreBitacora() {
-    std::chrono::system_clock::time_point puntoTiempo = Simulador::obtenerTiempoSistema();
+    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoDelSistema();
     std::time_t tiempo = std::chrono::system_clock::to_time_t(puntoTiempo);
     std::stringstream flujoTexto;
     flujoTexto << std::put_time(std::localtime(&tiempo), "%Y%m%d%H%M%S");
@@ -74,9 +79,9 @@ std::string Escribano::obtenerNombreBitacora() {
 }
 
 std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
-    auto iterador = bitacora.find(origen);
+    std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it = bitacora.find(origen);
     // Si el flujo para el origen no existe, crearlo
-    if (iterador == bitacora.end()) {
+    if (it == bitacora.end()) {
         // Si la carpeta no existe, crearla
         if (!std::filesystem::exists(nombreBitacora)) {
             std::filesystem::create_directories(nombreBitacora);
@@ -86,7 +91,7 @@ std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
         bitacora[origen] = std::make_unique<std::ofstream>(capitulo, std::ios::app);
         return *bitacora[origen];
     }
-    return *(iterador->second);
+    return *(it->second);
 }
 
 std::string Escribano::obtenerTextoNivelesDeRegistro(nivelDeRegistro nivel) {
@@ -100,7 +105,7 @@ std::string Escribano::obtenerTextoNivelesDeRegistro(nivelDeRegistro nivel) {
 }
 
 std::string Escribano::obtenerTextoFecha() {
-    std::chrono::system_clock::time_point puntoTiempo = Simulador::obtenerTiempoSistema();
+    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoDelSistema();
     std::time_t tiempo = std::chrono::system_clock::to_time_t(puntoTiempo);
     std::stringstream flujoTexto;
     flujoTexto << "[" << std::put_time(std::localtime(&tiempo), "%Y-%m-%d %H:%M:%S") << "]";
