@@ -1,5 +1,5 @@
-#ifndef _SIMULADOR
-#define _SIMULADOR
+#ifndef SIMULADOR
+#define SIMULADOR
 
 #include "simulacion.h"
 

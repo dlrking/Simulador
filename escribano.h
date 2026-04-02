@@ -1,5 +1,5 @@
-#ifndef _ESCRIBANO
-#define _ESCRIBANO
+#ifndef ESCRIBANO
+#define ESCRIBANO
 
 #include "encabezados.h"
 #include "simulador.h"

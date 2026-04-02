@@ -1,5 +1,5 @@
-#ifndef _ENCABEZADOS
-#define _ENCABEZADOS
+#ifndef ENCABEZADOS
+#define ENCABEZADOS
 
 #include <filesystem>
 #include <stdexcept>

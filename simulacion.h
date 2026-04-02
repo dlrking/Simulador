@@ -1,5 +1,5 @@
-#ifndef _SIMULACION
-#define _SIMULACION
+#ifndef SIMULACION
+#define SIMULACION
 
 #include "encabezados.h"
 
