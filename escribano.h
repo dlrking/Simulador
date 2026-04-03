@@ -1,7 +1,6 @@
 #ifndef ESCRIBANO
 #define ESCRIBANO
 
-#include "encabezados.h"
 #include "relojAplicacion.h"
 
 enum class nivelDeRegistro {
@@ -18,6 +17,7 @@ public:
 
     // Escribano crea un vector borrador en memoria con las entradas de diversos logs y con etiquetas para poder filtrar el registro
     void escribirBorrador(const std::string&, nivelDeRegistro, const std::string&, std::string);
+    void mostrarBorrador();
     // Transcribir guarda el vector borrador en disco
     void transcribirBorrador(const std::string&);
     void transcribirTodosLosBorradores();
@@ -40,7 +40,7 @@ private:
     Escribano& operator=(const Escribano&) = delete;
 
     // (Configuración) El número máximo de registros en memoria antes de transcribirBorrador/escribir en disco
-    size_t tamañoTamponDeRegistros = 300;
+    size_t tamañoTamponDeRegistros = 1;
     // (Configuración) Nivel mínimo de registro
     nivelDeRegistro nivelMinimoDeRegistro = nivelDeRegistro::DEPURACION;
 
@@ -64,22 +64,19 @@ private:
 };
 
 #ifndef NDEBUG
-#define ES_DEP(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::DEPURACION, __FUNCTION__, mensaje)
-#define ES_INF(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::INFORMACION, __FUNCTION__, mensaje)
-
-#define ES_ASE(condicion, origen, mensaje)\
-if (!(condicion)) {\
-    Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ERROR, __FUNCTION__, "ASERCIÓN ERRÓNEA: " + std::string(mensaje));\
-    Escribano::obtenerInstancia().cerrarBitacora();\
-    assert(condicion);\
-}
+    #define ES_DEP(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::DEPURACION, __FUNCTION__, mensaje)
+    #define ES_ASE(condicion, origen, mensaje)\
+    if (!(condicion)) {\
+        Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, "[ASERCIÓN ERRÓNEA]," + std::string(mensaje));\
+        Escribano::obtenerInstancia().cerrarBitacora();\
+        assert(condicion);\
+    }
 #else
-#define ES_DEP(origen, mensaje)
-#define ES_INF(origen, mensaje)
-
-#define ES_ASE(condicion, origen, mensaje)
+    #define ES_DEP(origen, mensaje)
+    #define ES_ASE(condicion, origen, mensaje)
 #endif
 
+#define ES_INF(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::INFORMACION, __FUNCTION__, mensaje)
 #define ES_ADV(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, mensaje)
 #define ES_ERR(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ERROR, __FUNCTION__, mensaje)
 

@@ -1,13 +1,16 @@
 #ifndef SIMULADOR
 #define SIMULADOR
 
+#include "cronometro.h"
 #include "simulacion.h"
-#include "relojAplicacion.h"
+
 
 class Simulador {
 public:
     Simulador();
     ~Simulador();
+
+    static constexpr const char* idEscribano = "SIMULADOR";
 
     bool configurar(std::string, std::string);
 
