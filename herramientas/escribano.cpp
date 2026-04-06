@@ -93,25 +93,24 @@ std::string Escribano::obtenerNombreBitacora() {
 
 std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
     try {
-        std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it = bitacora.find(origen);
+        std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it = bitacora.find(origen); // Iterador del mapa
         // Si el flujo para el origen no existe, crearlo
         if (it == bitacora.end()) {
-            std::filesystem::path capitulo;
-            std::filesystem::path directorio = std::filesystem::absolute(directorioBase);
+            std::filesystem::path capitulo = std::filesystem::absolute(directorioBase);
             // Variar carpeta destino segun el origen del récord
             if (origen == "SISTEMA" || origen == "SIMULADOR") {
                 // Si la carpeta no existe, crearla
-                if (!std::filesystem::exists(directorio)) {
-                    std::filesystem::create_directories(directorio);
+                if (!std::filesystem::exists(capitulo)) {
+                    std::filesystem::create_directories(capitulo);
                 }
                 // Asignar nombre al archivo (en principio los logs se separan por el objeto que los crea)
-                capitulo = directorio / (origen + ".csv");
+                capitulo = capitulo / (origen + ".csv");
             } else {
-                directorio = directorio / std::filesystem::absolute(nombreBitacora);
-                if (!std::filesystem::exists(directorio)) {
-                    std::filesystem::create_directories(directorio);
+                capitulo = capitulo / std::filesystem::absolute(nombreBitacora);
+                if (!std::filesystem::exists(capitulo)) {
+                    std::filesystem::create_directories(capitulo);
                 }
-                capitulo = directorio / (origen + ".csv");
+                capitulo = capitulo / (origen + ".csv");
             }
             bitacora[origen] = std::make_unique<std::ofstream>(capitulo, std::ios::out | std::ios::app);
             if (!bitacora[origen]->is_open()) {

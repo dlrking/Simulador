@@ -1,9 +1,7 @@
 #include "cronometro.h"
 
-Cronometro::Cronometro(const std::string& objeto, const std::string& funcion, const std::string& seccion) {
-    nombreObjeto = objeto;
-    nombreFuncion = funcion;
-    nombreSeccion = seccion;
+Cronometro::Cronometro(const std::string& objeto, const std::string& funcion, const std::string& seccion)
+    : nombreObjeto(objeto), nombreFuncion(funcion), nombreSeccion(seccion) {
     inicio = RelojAplicacion::obtenerTiempoDelCronometro();
 }
 

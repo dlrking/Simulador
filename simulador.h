@@ -1,8 +1,8 @@
 #ifndef SIMULADOR
 #define SIMULADOR
 
-#include "cronometro.h"
-#include "simulacion.h"
+#include "herramientas/cronometro.h"
+#include "simulacion/simulacion.h"
 
 
 class Simulador {

@@ -4,10 +4,11 @@ project(sim0)
 
 add_executable(sim0
                main.cpp
-               relojAplicacion.cpp
-               escribano.cpp
-               cronometro.cpp
-               simulador.cpp
-               simulacion.cpp)
+               herramientas/encabezados.h
+               herramientas/relojAplicacion.cpp
+               herramientas/escribano.cpp
+               herramientas/cronometro.cpp
+               simulacion/simulacion.cpp
+               simulador.cpp)
 
 install(TARGETS sim0 RUNTIME DESTINATION bin)
