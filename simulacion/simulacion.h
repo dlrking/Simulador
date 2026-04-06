@@ -1,7 +1,7 @@
 #ifndef SIMULACION
 #define SIMULACION
 
-#include "../herramientas/encabezados.h"
+#include "herramientas/relojSimulacion.h"
 
 class Simulacion {
 public:

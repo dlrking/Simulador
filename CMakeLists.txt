@@ -9,6 +9,7 @@ add_executable(sim0
                herramientas/escribano.cpp
                herramientas/cronometro.cpp
                simulacion/simulacion.cpp
+               simulacion/herramientas/relojSimulacion.cpp
                simulador.cpp)
 
 install(TARGETS sim0 RUNTIME DESTINATION bin)
