@@ -66,11 +66,12 @@ void Paladin::comprobarValidezFecha() {
         } else {
             throw std::domain_error("Fecha anterior a la Época UNIX en ::comprobarValidezFecha() \n");
         }
-        // Comprobar que el año en la fecha es anterior al año 3000
-        if (this->tmFechaTransferencia.tm_year < (3000 - 1900)) {
-            std::cout << "Fecha anterior al año 3000 \n";
+        // Comprobar que el año en la fecha es anterior al año 2036; nos interesa optimizar el uso de memoria
+        // Podriamos considerar 2^64 - 2 segundos de simulacion para arquitecturas x64
+        if (this->tmFechaTransferencia.tm_year < (2036 - 1900)) {
+            std::cout << "Fecha anterior al año 2036 \n";
         } else {
-            throw std::domain_error("Fecha anterior a la Época UNIX en ::comprobarValidezFecha() \n");
+            throw std::domain_error("Fecha final posterior al año 2036 en ::comprobarValidezFecha() \n");
         }
     } catch (const std::domain_error& error) {
         std::cerr << "Error: " << error.what() << std::endl;

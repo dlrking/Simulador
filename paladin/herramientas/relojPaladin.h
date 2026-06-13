@@ -1,7 +1,7 @@
 #ifndef RELOJ_SIMULACION
 #define RELOJ_SIMULACION
 
-#include "../../herramientas/encabezados.h"
+#include "../../escriba/herramientas/encabezados.h"
 
 // Estructura de tiempo para las entidades que necesiten alguna "idea" de la fecha y la hora
 struct FechaHora {

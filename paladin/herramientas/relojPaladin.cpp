@@ -28,7 +28,7 @@ void RelojP::actualizarFechaHora() {
 
     // Convertir fecha a texto con formato
     std::stringstream ss;
-    ss << std::put_time(ptm, "%Y-%m-%d %H:%M:%S");
+    ss << std::put_time(ptm, "%Y/%m/%d,%H:%M:%S");
     fechaHora.texto = ss.str();
 }
 
