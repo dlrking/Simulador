@@ -6,10 +6,10 @@ add_executable(sim0
                main.cpp
                herramientas/encabezados.h
                herramientas/relojAplicacion.cpp
-               herramientas/escribano.cpp
+               herramientas/escriba.cpp
                herramientas/cronometro.cpp
-               simulacion/simulacion.cpp
-               simulacion/herramientas/relojSimulacion.cpp
-               simulador.cpp)
+               paladin/paladin.cpp
+               paladin/herramientas/relojPaladin.cpp
+               tecnico.cpp)
 
 install(TARGETS sim0 RUNTIME DESTINATION bin)

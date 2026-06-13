@@ -1,7 +1,7 @@
 #ifndef CRONOMETRO
 #define CRONOMETRO
 
-#include "escribano.h"
+#include "escriba.h"
 
 class Cronometro {
 public:

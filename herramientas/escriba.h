@@ -10,37 +10,37 @@ enum class nivelDeRegistro {
     ERROR
 };
 
-class Escribano {
+class Escriba {
 public:
     // Función que siempre retorna una referencia a una variable estática de esta misma clase, sin modificarla
-    static Escribano& obtenerInstancia();
+    static Escriba& obtenerInstancia();
 
-    // Escribano crea un vector borrador en memoria con las entradas de diversos logs y con etiquetas para poder filtrar el registro
+    // Escriba crea un vector borrador en memoria con las entradas de diversos logs y con etiquetas para poder filtrar el registro
     void escribirBorrador(const std::string&, nivelDeRegistro, const std::string&, std::string);
     void mostrarBorrador();
     // Transcribir guarda el vector borrador en disco
     void transcribirBorrador(const std::string&);
     void transcribirTodosLosBorradores();
-    // No es un nombre muy evidente: Cerrar capítulo permite cerrar un ofstream en la bitacora
+    // No es un nombre muy evidente: Cerrar capítulo permite cerrar el ofstream de un borrador en la bitacora
     void cerrarCapitulo(const std::string&);
     void cerrarBitacora();
 
-    // Funciones publicas para modificar o exponer algunos atributos de Escribano
-    void ajustarTamañoTamponDeRegistros(size_t nuevoTampon) { tamañoTamponDeRegistros = nuevoTampon; }
+    // Funciones publicas para modificar o exponer algunos atributos de Escriba
+    void ajustarTamañoTamponDeRegistros(size_t nuevoTampon) { numeroDeRegistros = nuevoTampon; }
     void ajustarNivelMinimoDeRegistro(const std::string&);
     void ajustarDirectorioBitacora(const std::string& nuevoDirectorio) {  directorioBase = nuevoDirectorio; }
-    size_t obtenerTamañoTamponDeRegistros() { return tamañoTamponDeRegistros; }
+    size_t obtenerTamañoTamponDeRegistros() { return numeroDeRegistros; }
     std::string obtenerNivelMinimoDeRegistro();
     std::string obtenerDirectorioBase() { return directorioBase; }
 
 
 private:
-    // Sólo puede haber un objeto de esta clase así que modificamos operadores (prevención de duplicados)
-    Escribano(const Escribano&) = delete;
-    Escribano& operator=(const Escribano&) = delete;
+    // Sólo puede haber un objeto de esta clase así que modificamos operadores (=) (prevención de duplicados)
+    Escriba(const Escriba&) = delete;
+    Escriba& operator=(const Escriba&) = delete;
 
     // (Configuración) El número máximo de registros en memoria antes de transcribirBorrador/escribir en disco
-    size_t tamañoTamponDeRegistros = 1;
+    size_t numeroDeRegistros = 300;
     // (Configuración) Nivel mínimo de registro
     nivelDeRegistro nivelMinimoDeRegistro = nivelDeRegistro::DEPURACION;
 
@@ -50,25 +50,26 @@ private:
     std::string nombreBitacora; // "~/.../logs/xyz"
 
     // Mapas del tipo (Etiqueta de origen, vector<Mensajes>) y (Etiqueta de origen, apuntador_inteligente_unico<Flujo de salida>)
+    // Idealmente, la etiqueta de origen es el nombre de la clase que invoca al escriba
     std::map<std::string, std::vector<std::string>> borrador;
     // La bitácora, a continuación
     std::map<std::string, std::unique_ptr<std::ofstream>> bitacora;
 
     std::string obtenerNombreBitacora();
     std::ofstream& obtenerBitacora(const std::string&);
-    std::string obtenerTextoNivelesDeRegistro(nivelDeRegistro);
-    std::string obtenerTextoFecha();
+    std::string obtenerTextoNivelDeRegistro(nivelDeRegistro);
+    std::string obtenerTextoFecha(const std::chrono::system_clock::time_point);
 
-    Escribano() { nombreBitacora = obtenerNombreBitacora(); }
-    ~Escribano() { cerrarBitacora(); }
+    Escriba() { nombreBitacora = obtenerNombreBitacora(); }
+    ~Escriba() { cerrarBitacora(); }
 };
 
 #ifndef NDEBUG
-    #define ES_DEP(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::DEPURACION, __FUNCTION__, mensaje)
+    #define ES_DEP(origen, mensaje) Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::DEPURACION, __FUNCTION__, mensaje)
     #define ES_ASE(condicion, origen, mensaje)\
     if (!(condicion)) {\
-        Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, "[ASERCIÓN ERRÓNEA]," + std::string(mensaje));\
-        Escribano::obtenerInstancia().cerrarBitacora();\
+        Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, "[ASERCIÓN ERRÓNEA]," + std::string(mensaje));\
+        Escriba::obtenerInstancia().cerrarBitacora();\
         assert(condicion);\
     }
 #else
@@ -76,8 +77,8 @@ private:
     #define ES_ASE(condicion, origen, mensaje)
 #endif
 
-#define ES_INF(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::INFORMACION, __FUNCTION__, mensaje)
-#define ES_ADV(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, mensaje)
-#define ES_ERR(origen, mensaje) Escribano::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ERROR, __FUNCTION__, mensaje)
+#define ES_INF(origen, mensaje) Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::INFORMACION, __FUNCTION__, mensaje)
+#define ES_ADV(origen, mensaje) Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, mensaje)
+#define ES_ERR(origen, mensaje) Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ERROR, __FUNCTION__, mensaje)
 
 #endif

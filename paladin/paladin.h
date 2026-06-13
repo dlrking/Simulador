@@ -1,9 +1,9 @@
 #ifndef SIMULACION
 #define SIMULACION
 
-#include "herramientas/relojSimulacion.h"
+#include "herramientas/relojPaladin.h"
 
-class Simulacion {
+class Paladin {
 public:
 
     std::string strFecha;
@@ -18,8 +18,8 @@ public:
     std::time_t tiempoFinal;
     std::time_t tiempoSistema;
 
-    long tiempoSimulacionSegundos;
-    int tiempoSimulacionMinutos;
+    long numeroSegundos;
+    int numeroMinutos;
 
     std::vector<std::tm> vectorTiempo;
 
@@ -38,22 +38,23 @@ public:
     std::time_t tiempoFechaTransferencia;
 
     // Métodos
-    std::string mostrarStrFechaInicioSimulacion();
-    std::string mostrarStrFechaSimulacion();
-    std::string mostrarStrFechaFinSimulacion();
+    std::string mostrarStrFechaInicio();
+    std::string mostrarStrFecha();
+    std::string mostrarStrFechaFin();
 
-    std::time_t mostrarTiempoFechaInicioSimulacion();
-    std::time_t mostrarTiempoFechaSimulacion();
-    std::time_t mostrarTiempoFechaFinSimulacion();
+
+    std::time_t mostrarTiempoFechaInicioPaladin();
+    std::time_t mostrarTiempoFechaPaladin();
+    std::time_t mostrarTiempoFechaFinPaladin();
 
     /*
      *
      *
     */
-    Simulacion();
+    Paladin();
     /* Destructor de clase.
      */
-    ~Simulacion();
+    ~Paladin();
 };
 
 #endif

@@ -6,20 +6,18 @@
 class RelojAplicacion {
 public:
     static RelojAplicacion& obtenerInstancia();
-
-    static std::chrono::system_clock::time_point obtenerInstanteInicialSistema() {return instanteInicialSistema; }
-
-    static std::chrono::system_clock::time_point obtenerTiempoDelSistema() { return std::chrono::system_clock::now(); }
-    static std::chrono::steady_clock::time_point obtenerTiempoDelCronometro() { return std::chrono::steady_clock::now(); }
+    static std::chrono::system_clock::time_point obtenerTiempoInicial() { return tiempoInicial; }
+    static std::chrono::system_clock::time_point obtenerTiempoActual() { return std::chrono::system_clock::now(); }
+    static std::chrono::steady_clock::time_point obtenerCronometro() { return std::chrono::steady_clock::now(); }
 
 private:
-    // Sólo puede haber un objeto de esta clase así que modificamos operadores (prevención de duplicados)
+    // Sólo puede haber un objeto de esta clase así que modificamos operadores (=) (prevención de duplicados)
     RelojAplicacion(const RelojAplicacion&) = delete;
     RelojAplicacion& operator=(const RelojAplicacion&) = delete;
 
-    static inline std::chrono::system_clock::time_point instanteInicialSistema;
+    static inline std::chrono::system_clock::time_point tiempoInicial;
 
-    RelojAplicacion() { instanteInicialSistema = std::chrono::system_clock::now(); }
+    RelojAplicacion() { tiempoInicial = obtenerTiempoActual(); }
     ~RelojAplicacion() = default;
 };
 

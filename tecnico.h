@@ -2,22 +2,22 @@
 #define SIMULADOR
 
 #include "herramientas/cronometro.h"
-#include "simulacion/simulacion.h"
+#include "paladin/paladin.h"
 
 
-class Simulador {
+class Tecnico {
 public:
-    Simulador();
-    ~Simulador();
+    Tecnico();
+    ~Tecnico();
 
-    static constexpr const char* idEscribano = "SIMULADOR";
+    static constexpr const char* idEscriba = "SIMULADOR";
 
     bool configurar(std::string, std::string);
 
     void ejecutar();
 
 private:
-    std::string textoFechaSimulacion;
+    std::string textoFecha;
     std::string textoFechaSistema;
 
     std::chrono::system_clock::time_point tiempoInicial;
@@ -25,7 +25,7 @@ private:
     long duracionSegundos;
     long duracionMinutos;
 
-    Simulacion simulacion;
+    Paladin simulacion;
 
     bool ejecutando;
     std::string textoEstado;

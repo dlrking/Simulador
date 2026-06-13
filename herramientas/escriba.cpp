@@ -1,26 +1,26 @@
-#include "escribano.h"
+#include "escriba.h"
 
-Escribano& Escribano::obtenerInstancia() {
-    static Escribano instancia;
+Escriba& Escriba::obtenerInstancia() {
+    static Escriba instancia;
     return instancia;
 }
 
 // La variable origen idealmente es una de SISTEMA, SIMULADOR, CRONOMETRO, ENTIDAD, etc...
-void Escribano::escribirBorrador(const std::string& origen, nivelDeRegistro nivel, const std::string& funcion, std::string mensaje) {
-    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoDelSistema();
+void Escriba::escribirBorrador(const std::string& origen, nivelDeRegistro nivel, const std::string& funcion, std::string mensaje) {
+    std::chrono::system_clock::time_point tiempoReloj = RelojAplicacion::obtenerTiempoActual();
     if (nivel < nivelMinimoDeRegistro) { return; }
     std::vector<std::string>& registroActual = borrador[origen];
-    if (registroActual.size() >= tamañoTamponDeRegistros) { transcribirBorrador(origen);}
+    if (registroActual.size() >= numeroDeRegistros) { transcribirBorrador(origen);}
     std::stringstream suceso;
-    suceso << obtenerTextoFecha() << ","
-           << obtenerTextoNivelesDeRegistro(nivel) << ","
+    suceso << obtenerTextoFecha(tiempoReloj) << ","
+           << obtenerTextoNivelDeRegistro(nivel) << ","
            << "[" << origen  << "],"
            << "[" << funcion << "],"
            << mensaje;
     registroActual.push_back(suceso.str());
 }
 
-void Escribano::mostrarBorrador() {
+void Escriba::mostrarBorrador() {
     std::map<std::string, std::vector<std::string>>::iterator iterador;
     for (iterador = borrador.begin(); iterador != borrador.end(); ++iterador) {
         std::cout << "Origen: [" << iterador->first << "]" << std::endl;
@@ -31,8 +31,7 @@ void Escribano::mostrarBorrador() {
     }
 }
 
-
-void Escribano::transcribirBorrador(const std::string& origen) {
+void Escriba::transcribirBorrador(const std::string& origen) {
     if (borrador[origen].empty()) { return; }
     std::ofstream& capitulo = obtenerBitacora(origen);
     if (capitulo.is_open()) {
@@ -45,19 +44,19 @@ void Escribano::transcribirBorrador(const std::string& origen) {
     borrador[origen].clear();
 }
 
-void Escribano::transcribirTodosLosBorradores() {
+void Escriba::transcribirTodosLosBorradores() {
     std::map<std::string, std::vector<std::string>>::iterator it;
     for (it = borrador.begin(); it != borrador.end(); ++it) { transcribirBorrador(it->first); }
 }
 
-void Escribano::cerrarCapitulo(const std::string& origen) {
+void Escriba::cerrarCapitulo(const std::string& origen) {
     transcribirBorrador(origen);
     std::ofstream& capitulo = obtenerBitacora(origen);
     if (capitulo.is_open()) { capitulo.close(); }
     capitulo.clear();
 }
 
-void Escribano::cerrarBitacora() {
+void Escriba::cerrarBitacora() {
     transcribirTodosLosBorradores();
     std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it;
     for (it = bitacora.begin(); it != bitacora.end(); ++it) { cerrarCapitulo(it->first); }
@@ -65,7 +64,7 @@ void Escribano::cerrarBitacora() {
     borrador.clear();
 }
 
-void Escribano::ajustarNivelMinimoDeRegistro(const std::string& nuevoNivel) {
+void Escriba::ajustarNivelMinimoDeRegistro(const std::string& nuevoNivel) {
     if (nuevoNivel == "Depuración") { nivelMinimoDeRegistro = nivelDeRegistro::DEPURACION; }
     else if (nuevoNivel == "Información") { nivelMinimoDeRegistro = nivelDeRegistro::INFORMACION; }
     else if (nuevoNivel == "Advertencia") { nivelMinimoDeRegistro = nivelDeRegistro::ADVERTENCIA; }
@@ -73,7 +72,7 @@ void Escribano::ajustarNivelMinimoDeRegistro(const std::string& nuevoNivel) {
     else { throw std::invalid_argument("Argumento incorrecto en ajustarNivelMinimoDeRegistro()"); }
 }
 
-std::string Escribano::obtenerNivelMinimoDeRegistro() {
+std::string Escriba::obtenerNivelMinimoDeRegistro() {
     switch(nivelMinimoDeRegistro) {
         case nivelDeRegistro::DEPURACION  : return "Depuración";
         case nivelDeRegistro::INFORMACION : return "Información";
@@ -83,15 +82,15 @@ std::string Escribano::obtenerNivelMinimoDeRegistro() {
     }
 }
 
-std::string Escribano::obtenerNombreBitacora() {
-    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoDelSistema();
+std::string Escriba::obtenerNombreBitacora() {
+    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoActual();
     std::time_t tiempo = std::chrono::system_clock::to_time_t(puntoTiempo);
     std::stringstream flujoTexto;
     flujoTexto << std::put_time(std::localtime(&tiempo), "%Y%m%d%H%M%S");
     return flujoTexto.str();
 }
 
-std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
+std::ofstream& Escriba::obtenerBitacora(const std::string& origen) {
     try {
         std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it = bitacora.find(origen); // Iterador del mapa
         // Si el flujo para el origen no existe, crearlo
@@ -114,8 +113,8 @@ std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
             }
             bitacora[origen] = std::make_unique<std::ofstream>(capitulo, std::ios::out | std::ios::app);
             if (!bitacora[origen]->is_open()) {
-                std::string mensaje = obtenerTextoFecha() + ","
-                + "[CRÍTICO],[ESCRIBANO],Escribano::obtenerBitacora(),"
+                std::string mensaje = obtenerTextoFecha(RelojAplicacion::obtenerTiempoActual()) + ","
+                + "[CRÍTICO],[ESCRIBANO],Escriba::obtenerBitacora(),"
                 + "No se pudo obtener bitácora,"
                 + "Error: No se pudo abrir archivo" + std::string(capitulo) + "\n";
                 std::cerr << mensaje;
@@ -124,8 +123,8 @@ std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
         }
         return *(it->second);
     } catch(const std::exception& error) {
-        std::string mensaje = obtenerTextoFecha() + ","
-            + "[CRÍTICO],[ESCRIBANO],Escribano::obtenerBitacora(),"
+        std::string mensaje = obtenerTextoFecha(RelojAplicacion::obtenerTiempoActual()) + ","
+            + "[CRÍTICO],[ESCRIBANO],Escriba::obtenerBitacora(),"
             + "No se pudo obtener bitácora " + origen + ","
             + "Error: " + error.what() + "\n";
         std::cerr << mensaje;
@@ -133,7 +132,7 @@ std::ofstream& Escribano::obtenerBitacora(const std::string& origen) {
     }
 }
 
-std::string Escribano::obtenerTextoNivelesDeRegistro(nivelDeRegistro nivel) {
+std::string Escriba::obtenerTextoNivelDeRegistro(nivelDeRegistro nivel) {
     switch(nivel) {
         case nivelDeRegistro::DEPURACION  : return "[DEPURACIÓN]";
         case nivelDeRegistro::INFORMACION : return "[INFORMACIÓN]";
@@ -143,11 +142,10 @@ std::string Escribano::obtenerTextoNivelesDeRegistro(nivelDeRegistro nivel) {
     }
 }
 
-std::string Escribano::obtenerTextoFecha() {
-    std::chrono::system_clock::time_point puntoTiempo = RelojAplicacion::obtenerTiempoDelSistema();
-    std::time_t tiempo = std::chrono::system_clock::to_time_t(puntoTiempo);
+std::string Escriba::obtenerTextoFecha(std::chrono::system_clock::time_point argsTiempo) {
+    std::time_t tiempo = std::chrono::system_clock::to_time_t(argsTiempo);
     std::stringstream flujoTexto;
-    flujoTexto << "[" << std::put_time(std::localtime(&tiempo), "%Y-%m-%d %H:%M:%S") << "]";
+    flujoTexto << std::put_time(std::localtime(&tiempo), "%Y-%m-%d %H:%M:%S");
     return flujoTexto.str();
 }
 
