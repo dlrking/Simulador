@@ -1,6 +1,6 @@
 #include "relojPaladin.h"
 
-RelojP::RelojP (long tiempoSistema, int resolucionMinutos = 1)
+RelojP::RelojP(unsigned long long tiempoSistema, int resolucionMinutos = 1)
 : paso(0), tiempoSistema(tiempoSistema), resolucion(resolucionMinutos) {
     actualizarFechaHora();
 }
@@ -30,5 +30,11 @@ void RelojP::actualizarFechaHora() {
     std::stringstream ss;
     ss << std::put_time(ptm, "%Y/%m/%d,%H:%M:%S");
     fechaHora.texto = ss.str();
+}
+
+int RelojP::obtenerDiasDelMes(int mes, int año) const {
+    const int numeroDeDiasPorMes[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    if (mes == 2 && esBisiesto(año)) { return 29; }
+    return numeroDeDiasPorMes[mes - 1];
 }
 

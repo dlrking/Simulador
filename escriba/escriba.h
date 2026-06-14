@@ -1,5 +1,5 @@
-#ifndef ESCRIBANO
-#define ESCRIBANO
+#ifndef ESCRIBA
+#define ESCRIBA
 
 #include "herramientas/relojAplicacion.h"
 

@@ -1,9 +1,7 @@
-#ifndef SIMULADOR
-#define SIMULADOR
+#ifndef TECNICO
+#define TECNICO
 
-#include "../escriba/cronometro.h"
 #include "../paladin/paladin.h"
-
 
 class Tecnico {
 public:
