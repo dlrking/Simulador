@@ -12,7 +12,7 @@ bool Tecnico::estaEjecutando() {
     return ejecutando;
 }
 
-bool Tecnico::configurar(std::string, std::string) {
+bool Tecnico::configurar(std::string atributo, std::string nuevoValor) {
 
 }
 

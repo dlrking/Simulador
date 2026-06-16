@@ -9,7 +9,7 @@ public:
     ~Cronometro();
 
 private:
-    std::string nombreObjeto;
+    std::string nombreOrigen;
     std::string nombreFuncion;
     std::string nombreSeccion;
     std::chrono::steady_clock::time_point inicio;
@@ -18,7 +18,7 @@ private:
 #ifndef NDEBUG
     #define CRONOMETRAR(objeto, seccion) Cronometro duracion_##__LINE__(objeto, __FUNCTION__, seccion)
 #else
-    #define CRONOMETRAR(origen, seccion)
+    #define CRONOMETRAR(objeto, seccion)
 #endif
 
 #endif

@@ -7,13 +7,15 @@
 
 class Paladin {
 public:
-    Paladin(const std::string&, unsigned long long, bool);
+    Paladin(const std::string&, int64_t, bool);
     ~Paladin();
+
+    static constexpr const char* idEscriba = "PALADIN";
 
     void iniciar();
     void pausar();
     void detener();
-    void ajustarVelocidad();
+    void ajustarVelocidad(float);
 
     void actualizar();
 
@@ -21,7 +23,7 @@ public:
     bool esInteractivo() const { return interactivo; }
     std::string obtenerTextoEstado() const;
     const FechaHora& obtenerFechaHoraSim() const { return reloj.obtenerFechaHora(); }
-    unsigned long long obtenerPaso() const { return reloj.obtenerPaso(); }
+    int64_t obtenerPaso() const { return reloj.obtenerPaso(); }
 
 private:
     std::string identificador;

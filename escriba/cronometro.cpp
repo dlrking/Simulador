@@ -1,7 +1,7 @@
 #include "cronometro.h"
 
-Cronometro::Cronometro(const std::string& objeto, const std::string& funcion, const std::string& seccion)
-    : nombreObjeto(objeto), nombreFuncion(funcion), nombreSeccion(seccion) {
+Cronometro::Cronometro(const std::string& origen, const std::string& funcion, const std::string& seccion)
+    : nombreOrigen(origen), nombreFuncion(funcion), nombreSeccion(seccion) {
     inicio = RelojAplicacion::obtenerCronometro();
 }
 
@@ -10,6 +10,6 @@ Cronometro::~Cronometro() {
     long duracion = std::chrono::duration_cast<std::chrono::microseconds>(fin - inicio).count();
     std::string textoDuracion = std::to_string(duracion);
     std::string mensaje = "Función y Tiempo de ejecución en \u00B5s: " + nombreSeccion + "," + textoDuracion;
-    Escriba::obtenerInstancia().escribirBorrador(nombreObjeto, nivelDeRegistro::DEPURACION, nombreFuncion, mensaje);
+    Escriba::obtenerInstancia().escribirBorrador(nombreOrigen, nivelDeRegistro::DEPURACION, nombreFuncion, mensaje);
 }
 

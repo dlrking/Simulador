@@ -55,7 +55,9 @@ void Escriba::transcribirBorrador(const std::string& origen) {
             capitulo << registro[it] << "\n";
         }
         // Guardar capítulo en disco
+#ifdef NDEBUG
         capitulo.flush();
+#endif
     }
     // Limpiar borrador
     borrador[origen].clear();

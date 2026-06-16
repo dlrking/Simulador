@@ -42,7 +42,11 @@ private:
     Escriba& operator=(const Escriba&) = delete;
 
     // (Configuración) El número máximo de registros en memoria antes de transcribirBorrador/escribir en disco
+#ifndef NDEBUG
+    size_t numeroDeRegistros = 900000;
+#else
     size_t numeroDeRegistros = 300;
+#endif
     // (Configuración) Nivel mínimo de registro
     nivelDeRegistro nivelRegistro = nivelDeRegistro::DEPURACION;
 
