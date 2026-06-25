@@ -27,7 +27,7 @@ int64_t RelojAplicacion::textoFechaEnMiliseg(const std::string textoFecha) {
 
     int64_t totalDias = 0LL;
 
-    if(año > 1950) {
+    if(año >= 1950) {
         for(int a = 1950; a < año; ++a) {
             totalDias += (esBisiesto(a) ? 366LL : 365LL);
         }
@@ -79,6 +79,9 @@ FechaHora RelojAplicacion::obtenerFechaHora(int64_t milisegundos) {
     int residuoDia = static_cast<int>(numeroDias % 7LL);                        // % 7 para saber si 0 Dom, 1 Lun, 2 Mar...
     fh.diaSemana = (residuoDia >= 0) ? residuoDia : (residuoDia + 7);           // Si el residuo es negativo, corregirlo sumando 7 para obtener el correcto
 
+    const std::string dia[7] = {"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"};
+    fh.dia = dia[fh.diaSemana];
+
     // Descomponer y extraer el número de años
     if(milisegundos >= 0) {
         fh.año = 1950;                                                          // Establecer el año de partida para las cuentas hacia adelante (sentido positivo)
@@ -126,11 +129,12 @@ FechaHora RelojAplicacion::obtenerFechaHora(int64_t milisegundos) {
             msAño = (esBisiesto(fh.año) ? 366LL : 365LL) * 86400000LL;
         }
 
-        fh.diaAño = static_cast<int>(msRestantes / 86400000LL) + 1;
+        msAño += msRestantes;
+
+        fh.diaAño = static_cast<int>(msAño / 86400000LL) + 1;
         fh.semanaAño = ((fh.diaAño - 1) / 7) + 1;
 
         fh.mes = 1;
-        msAño += msRestantes;
         int64_t msMes = static_cast<int64_t>(diasDelMes(fh.mes, fh.año)) * 86400000LL;
         // Restando los días (en ms) del mes, un mes tras otro
         while(msAño >= msMes) {
@@ -139,7 +143,7 @@ FechaHora RelojAplicacion::obtenerFechaHora(int64_t milisegundos) {
             msMes = static_cast<int64_t>(diasDelMes(fh.mes, fh.año)) * 86400000LL;
         }
 
-        fh.diaMes = static_cast<int>(msRestantes / 86400000LL) + 1;
+        fh.diaMes = static_cast<int>(msAño / 86400000LL) + 1;
         fh.semanaMes = ((fh.diaMes - 1) / 7) + 1;
 
         msRestantes = msAño;

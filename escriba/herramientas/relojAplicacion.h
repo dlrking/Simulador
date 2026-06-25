@@ -16,8 +16,8 @@ struct FechaHora {
     int minuto;
     int segundo;
     int milisegundo;    // 1-999
-    bool feriado;
     std::string texto;  // "YYYY/MM/DD,HH:MM:SS"
+    std::string dia;    // Lunes, Martes...
 };
 
 class RelojAplicacion {

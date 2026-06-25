@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.0)
 project(sim0)
 
 set(CURSES_NEED_NCURSES TRUE)
+set(CURSES_NEED_WIDE TRUE)
 find_package(Curses REQUIRED)
 
 add_executable(sim0
@@ -17,6 +18,6 @@ add_executable(sim0
                tecnico/tecnico.cpp)
 
 target_include_directories(sim0 PRIVATE ${CURSES_INCLUDE_DIRS})
-target_link_libraries(sim0 PRIVATE ${CURSES_LIBRARIES})
+target_link_libraries(sim0 PRIVATE ncursesw)
 
 install(TARGETS sim0 RUNTIME DESTINATION bin)

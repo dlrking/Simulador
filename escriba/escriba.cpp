@@ -34,7 +34,7 @@ void Escriba::mostrarBorrador() {
         std::cout << "Origen: [" << iterador->first << "]" << std::endl;
         const std::vector<std::string>& mensajes = iterador->second;
         // Si el vector de mensajes está vacío, salir
-        if (mensajes.size() == 0) { return; }
+        if (mensajes.size() == 0) { continue; }
         // Iterar sobre el vector de mensajes e imprimirlos
         for (size_t i = 0; i < mensajes.size(); ++i) {
             std::cout << "  > " << mensajes[i] << std::endl;
@@ -55,7 +55,7 @@ void Escriba::transcribirBorrador(const std::string& origen) {
             capitulo << registro[it] << "\n";
         }
         // Guardar capítulo en disco
-#ifdef NDEBUG
+#ifndef NDEBUG
         capitulo.flush();
 #endif
     }
@@ -77,14 +77,24 @@ void Escriba::cerrarCapitulo(const std::string& origen) {
     // Cerrar flujo si está abierto
     if (capitulo.is_open()) { capitulo.close(); }
     // Limpiar bitácora en la etiqueta de origen (ahora es un apuntador vacío)
-    capitulo.clear();
+    bitacora.erase(origen);
 }
 
 void Escriba::cerrarBitacora() {
-    transcribirBorradores();
-    // Obtener iterador del mapa (bitácora) e iterar sobre el mapa cerrando cada flujo para cada etiqueta de origen y limpiar
-    std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it;
-    for (it = bitacora.begin(); it != bitacora.end(); ++it) { cerrarCapitulo(it->first); }
+    try {
+        transcribirBorradores();
+        // Obtener iterador del mapa (bitácora) e iterar sobre el mapa cerrando cada flujo para cada etiqueta de origen y limpiar
+        std::map<std::string, std::unique_ptr<std::ofstream>>::iterator it;
+        for (it = bitacora.begin(); it != bitacora.end(); ++it) {
+            if(it->second && it->second->is_open()) { it->second->close(); }
+        }
+    } catch (std::exception& error) {
+        std::string mensaje = obtenerTextoFecha(RelojAplicacion::obtenerInstanteActual()) + ","
+        + "[CRÍTICO],[ESCRIBANO],Escriba::cerrarBitacora(),"
+        + "No se pudo cerrar la bitácora,"
+        + "No se cerrar el flujo de archivo\n";
+        std::cerr << mensaje;
+    }
     bitacora.clear();
     borrador.clear();
 }
@@ -134,7 +144,7 @@ std::ofstream& Escriba::obtenerBitacora(const std::string& origen) {
                 // Asignar nombre al archivo (en principio los logs se separan por el objeto que los crea)
                 capitulo = capitulo / (origen + ".csv");
             } else {
-                capitulo = capitulo / std::filesystem::absolute(nombreBitacora);
+                capitulo = capitulo / nombreBitacora;
                 if (!std::filesystem::exists(capitulo)) {
                     std::filesystem::create_directories(capitulo);
                 }
@@ -147,7 +157,7 @@ std::ofstream& Escriba::obtenerBitacora(const std::string& origen) {
                 std::string mensaje = obtenerTextoFecha(RelojAplicacion::obtenerInstanteActual()) + ","
                 + "[CRÍTICO],[ESCRIBANO],Escriba::obtenerBitacora(),"
                 + "No se pudo obtener bitácora,"
-                + "Error: No se pudo abrir archivo" + std::string(capitulo) + "\n";
+                + "Error: No se pudo abrir archivo " + capitulo.string() + "\n";
                 std::cerr << mensaje;
             }
             // Devolver apuntador creado

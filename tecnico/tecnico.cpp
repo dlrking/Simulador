@@ -24,7 +24,7 @@ std::string Tecnico::verificarTextoFecha(const std::string&) {
 
 }
 
-std::chrono::system_clock Tecnico::convertirTextoFechaEnInstante(const std::string&) {
+std::chrono::system_clock::time_point Tecnico::convertirTextoFechaEnInstante(const std::string&) {
 
 }
 

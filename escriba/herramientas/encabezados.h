@@ -9,6 +9,7 @@
 //#include <iomanip>
 //#include <sstream>
 #include <fstream>
+#include <csignal>
 //#include <cassert>
 //#include <string>
 //#include <limits>

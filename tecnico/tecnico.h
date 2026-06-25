@@ -35,7 +35,7 @@ private:
     int semillaAleatoria;
 
     std::string verificarTextoFecha(const std::string&);
-    std::chrono::system_clock convertirTextoFechaEnInstante(const std::string&);
+    std::chrono::system_clock::time_point convertirTextoFechaEnInstante(const std::string&);
     bool validarRangoFechas(std::chrono::system_clock::time_point, std::chrono::system_clock::time_point);
 
 

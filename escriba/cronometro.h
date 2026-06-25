@@ -5,20 +5,20 @@
 
 class Cronometro {
 public:
-    explicit Cronometro(const std::string&, const std::string&, const std::string&);
+    explicit Cronometro(const char*, const char*, const char*);
     ~Cronometro();
 
 private:
-    std::string nombreOrigen;
-    std::string nombreFuncion;
-    std::string nombreSeccion;
+    const char* nombreOrigen;
+    const char* nombreFuncion;
+    const char* nombreSeccion;
     std::chrono::steady_clock::time_point inicio;
 };
 
 #ifndef NDEBUG
-    #define CRONOMETRAR(objeto, seccion) Cronometro duracion_##__LINE__(objeto, __FUNCTION__, seccion)
+    #define CRONOMETRAR(origen, seccion) Cronometro duracion_##__LINE__(origen, __FUNCTION__, seccion)
 #else
-    #define CRONOMETRAR(objeto, seccion)
+    #define CRONOMETRAR(origen, seccion)
 #endif
 
 #endif

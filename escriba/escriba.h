@@ -43,9 +43,9 @@ private:
 
     // (Configuración) El número máximo de registros en memoria antes de transcribirBorrador/escribir en disco
 #ifndef NDEBUG
-    size_t numeroDeRegistros = 900000;
-#else
     size_t numeroDeRegistros = 300;
+#else
+    size_t numeroDeRegistros = 60000;
 #endif
     // (Configuración) Nivel mínimo de registro
     nivelDeRegistro nivelRegistro = nivelDeRegistro::DEPURACION;
@@ -74,11 +74,13 @@ private:
     #define ES_MOSTRAR_BORRADOR() Escriba::obtenerInstancia().mostrarBorrador()
     #define ES_DEP(origen, mensaje) Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::DEPURACION, __FUNCTION__, mensaje)
     #define ES_ASE(condicion, origen, mensaje)\
-    if (!(condicion)) {\
-        Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, "[ASERCIÓN ERRÓNEA]," + std::string(mensaje));\
-        Escriba::obtenerInstancia().cerrarBitacora();\
-        assert(condicion);\
-    }
+    do {\
+        if (!(condicion)) {\
+            Escriba::obtenerInstancia().escribirBorrador(origen, nivelDeRegistro::ADVERTENCIA, __FUNCTION__, "[ASERCIÓN ERRÓNEA]," + std::string(mensaje));\
+            Escriba::obtenerInstancia().cerrarBitacora();\
+            assert(condicion);\
+        }\
+    } while(0) // while (false) (?), mientras (falso)
 #else
     #define ES_MOSTRAR_BORRADOR()
     #define ES_DEP(origen, mensaje)
